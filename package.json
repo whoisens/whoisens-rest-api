@@ -1,0 +1,27 @@
+{
+  "name": "whoisens-api",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "serve:dev": "node --experimental-modules --experimental-json-modules src/index.js",
+    "serve:start": "npx pm2-runtime start node --name api -- --experimental-modules --experimental-json-modules src/index.js",
+    "serve:stop": "npx pm2-runtime stop all && npx pm2 delete all",
+    "docker-build": "docker build . -t whoisens-api",
+    "docker-restart": "docker stop whoisens-api; docker rm whoisens-api; docker run -dit -p 80:80 -p 443:443 --name whoisens-api whoisens-api",
+    "docker-restart-dev": "docker stop whoisens-api; docker rm whoisens-api; docker run -dit -p 8089:80 -p 44389:443 --name whoisens-api whoisens-api",
+    "docker-deploy": "npm run docker-build && npm run docker-restart",
+    "docker-deploy-dev": "npm run docker-build && npm run docker-restart-dev",
+    "docker-debug": "docker exec -it whoisens-api bash"
+  },
+  "dependencies": {
+    "node-fetch": "^2.5.0",
+    "restify": "^8.3.2",
+    "restify-errors": "^8.0.0",
+    "whoisens-lib": "0.0.5"
+  },
+  "devDependencies": {
+    "pm2": "^3.5.0"
+  }
+}
