@@ -11,17 +11,20 @@
     "docker-build": "docker build . -t whoisens-api",
     "docker-restart": "docker stop whoisens-api; docker rm whoisens-api; docker run -dit -p 80:80 -p 443:443 --name whoisens-api whoisens-api",
     "docker-restart-dev": "docker stop whoisens-api; docker rm whoisens-api; docker run -dit -p 8089:80 -p 44389:443 --name whoisens-api whoisens-api",
-    "docker-deploy": "npm run docker-build && npm run docker-restart",
+    "docker-deploy": "npm run docker-build && sudo npm run docker-restart",
     "docker-deploy-dev": "npm run docker-build && npm run docker-restart-dev",
-    "docker-debug": "docker exec -it whoisens-api bash"
+    "docker-debug": "docker exec -it whoisens-api bash",
+    "test": "node --experimental-modules --experimental-json-modules tests/index.js"
   },
   "dependencies": {
     "node-fetch": "^2.5.0",
     "restify": "^8.3.2",
     "restify-errors": "^8.0.0",
-    "whoisens-lib": "0.0.6"
+    "whoisens-lib": "file:../whoisens-lib",
+    "whoisens-test-dataset": "0.0.3"
   },
   "devDependencies": {
+    "node-test": "^1.2.4",
     "pm2": "^3.5.0"
   }
 }

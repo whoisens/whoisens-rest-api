@@ -1,4 +1,4 @@
-# WhoisENS REST API Documentation
+# Whois ENS REST API Documentation
 
 > https://stackedit.io/app
 
