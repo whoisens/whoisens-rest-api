@@ -1,49 +1,23 @@
 # Whois ENS REST API  
   
 >  API Version: v2.0.0  
->  Document Version: v2.0.0  
-  
+>  Document Version: v2.0.1  
+>  REST API Endpoint: https://api.whoisens.org
+
+
 Provided comprehensive REST API allows to get any info about Ethereum address.
   
   
-# Interfaces
+# Used Interfaces
 
 ```typescript
-export enum EthAddressType {
+enum EthAddressType {
     name = 'name',
     address = 'address',
     error = 'error'
 }
 
-export enum ResolveType {
-    forward = 'forward',
-    reverse = 'reverse',
-    error = 'error'
-}
-
-export interface ISetResponse {
-    resultName: string;
-    result: Response;
-}
-
-export interface ISetResponseError {
-    resultName: string;
-    error: string;
-}
-
-export interface IResponse {
-    requestedInfo: IResponseRequestedInfo;
-    responseInfo: IResponseResponseInfo;
-    ethRCP: IEthJSONRCP;
-    error?: string;
-}
-
-export interface IResponseRequestedInfo {
-    address: string;
-    processingAddress: string;
-}
-
-export interface IEthJSONRCP {
+interface IEthJSONRCP {
     request: {
         id: number;
         contractAddress: string;
@@ -54,26 +28,14 @@ export interface IEthJSONRCP {
     response: IJSONRCPResponse
 }
 
-export interface IJSONRCPResponse {
+interface IJSONRCPResponse {
     id: number;
     jsonrpc: string;
     result: string;
     error?: object
 }
 
-export interface IJSONRCPResponseResult {
-    id: number;
-    data: IJSONRCPResponse;
-}
-
-export interface IResponseResponseInfo {
-    result?: string | number;
-    data?: IAdditionalDataInfo;
-    ethRCP?: IEthJSONRCP;
-    error?: string;
-}
-
-export interface IAdditionalDataInfo {
+interface IAdditionalDataInfo {
     address?: string;
     addressParent?: string;
     addressType?: EthAddressType;
