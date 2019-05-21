@@ -1,6 +1,17 @@
-# WhoisENS API
+# Whois ENS API
 
-WhoisENS API allows you get owner/controller info, date expiration, resolve name/addresses using ENS.
+<p>
+  <a href="https://travis-ci.org/whoisens/whoisens-api">
+    <img src="https://api.travis-ci.org/whoisens/whoisens-api.svg?branch=master" alt="Build status">
+  </a>
+
+  <a href="https://github.com/whoisens/whoisens-api/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/whoisens-api.svg" alt="license">
+  </a>
+</p>
+
+
+Whois ENS REST API allows you get owner/controller info, date expiration, resolve name/addresses using ENS.
 
 For REST API refer to https://whoisens.org/api
 
@@ -11,59 +22,29 @@ For REST API refer to https://whoisens.org/api
 
 #### Install docker
 
-```bash
-sudo apt-get update
-sudo apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
+1. Install [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce)
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+2. Copy SSL keys into `docker-files/certs` folder.
 
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-   
-sudo apt-get install -y docker-ce docker-ce-cli
-```
+3. Deploy
 
-Copy SSL keys into `docker-files/certs` folder.
-
-
-1. Deploy and ensure it works
 
 ```bash
-npm run docker-deploy-dev
-```
+npm run docker-deploy
 
-2. Generate archive and deploy it to server
+# or if no Node.js installed
 
-```bash
-docker save whoisens-api > /tmp/whoisens-api.tar
-gzip /tmp/whoisens-api.tar
+docker build . -t whoisens-api
 
-scp /tmp/whoisens-api.tar.gz root@whoisens.org:/tmp
-
-ssh root@whoisens.org
-cd /tmp
-sudo docker load --input whoisens-api.tar.gz
-
-sudo docker stop whoisens-api
+docker stop whoisens-api
 docker rm whoisens-api
-sudo docker run -dit -p 80:80 -p 443:443 --name whoisens-api whoisens-api
+
+# see env/README.md how to run on existing env
+docker run -dit -p 80:80 -p 443:443 --name whoisens-api whoisens-api
 ```
 
 
-#### Debug Docker
-
-```bash
-npm run docker-debug
-```
-
-#### Install (for Development)
+### Install (for development)
 
 ```bash
 npm ci
