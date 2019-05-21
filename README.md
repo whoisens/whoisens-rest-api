@@ -6,7 +6,7 @@
   </a>
 
   <a href="https://github.com/whoisens/whoisens-api/blob/master/LICENSE">
-    <img src="https://img.shields.io/npm/l/whoisens-api.svg" alt="license">
+    <img src="https://img.shields.io/github/license/whoisens/whoisens-api.svg" alt="license">
   </a>
 </p>
 
