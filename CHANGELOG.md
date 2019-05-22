@@ -1,3 +1,10 @@
+## [0.0.4] - 2019-05-22
+
+### Changed
+
+- switched to own ethereum
+
+
 ## [0.0.3] - 2019-05-21
 
 ### Changed

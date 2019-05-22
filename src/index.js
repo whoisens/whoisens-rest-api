@@ -12,8 +12,7 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 const networkName = 'mainnet';
-const networkURL = `https://${networkName}.infura.io/v3/cd43214e1d7a423f9d28b517e3ce6321`;
-// const networkURL = 'http://eth.gateway.whoisens.org';
+const networkURL = 'http://eth.gateway.whoisens.org';
 
 server.get('/', async (req, res, next) => {
   try {
