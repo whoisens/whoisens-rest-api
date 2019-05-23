@@ -20,7 +20,7 @@
     "node-fetch": "^2.6.0",
     "restify": "^8.3.2",
     "restify-errors": "^8.0.0",
-    "whoisens-lib": "^1.0.0-beta.5",
+    "whoisens-lib": "^1.0.0-beta.6",
     "whoisens-test-dataset": "0.0.3"
   },
   "devDependencies": {

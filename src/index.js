@@ -12,7 +12,7 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 const networkName = 'mainnet';
-const networkURL = 'http://eth.gateway.whoisens.org';
+const networkURL = 'https://eth.gateway.whoisens.org';
 
 server.get('/', async (req, res, next) => {
   try {
