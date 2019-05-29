@@ -1,4 +1,4 @@
-# Whois ENS API
+# WhoisENS REST API
 
 <p>
   <a href="https://travis-ci.org/whoisens/whoisens-api">
@@ -11,42 +11,57 @@
 </p>
 
 
-Whois ENS REST API allows you get owner/controller info, date expiration, resolve name/addresses using ENS.
+WhoisENS REST API allows you to get owner/controller info, date expiration, resolve name/addresses using ENS.
 
 For REST API refer to https://whoisens.org/api
 
 > REST API Endpoint: https://api.whoisens.org
 
 
-### Install (for production)
+### How to use
 
-#### Install docker
+You can use REST API from Node.js or directly from browser. CORS is enabled for all by default.
 
-1. Install [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce)
+#### REST API
 
-2. Copy SSL keys into `docker-files/certs` folder.
+```javascript
+const networkURL = 'https://api.whoisens.org';
+const name = 'whoisens.eth';
 
-3. Deploy
+(async () => {
+  const forwardResolve = (await (await fetch(`${networkURL}/resolve/address/${name}`)).json()).result;
+  console.log('Forward Resolve', forwardResolve);
 
+  const reverseResolve = (await (await fetch(`${networkURL}/resolve/address/${forwardResolve.result}`)).json()).result;
+  console.log('Reverse Resolve', reverseResolve);
 
-```bash
-npm run docker-deploy
-
-# or if no Node.js installed
-
-docker build . -t whoisens-api
-
-docker stop whoisens-api
-docker rm whoisens-api
-
-# see env/README.md how to run on existing env
-docker run -dit -p 80:80 -p 443:443 --name whoisens-api whoisens-api
+  const contentHash = (await (await fetch(`${networkURL}/resolve/contenthash/${name}`)).json()).result;
+  console.log('Content hash', contentHash);
+})();
 ```
 
+#### Directly connect to Node
 
-### Install (for development)
+You can use WhoisENS Ethereum Node directly with  third-party libraries, like Web3.js.
 
-```bash
-npm ci
-npm run serve:dev
+```javascript
+import Web3 from 'web3';
+
+const networkURL = 'https://eth.gateway.whoisens.org';
+const name = 'whoisens.eth';
+
+(async () => {
+  const web3 = new Web3(Web3.givenProvider || networkURL);
+
+  const forwardResolve = await web3.eth.ens.getAddress(name);
+  console.log('Forward Resolve', forwardResolve);
+
+  const contentHash = await web3.eth.ens.getContenthash(name);
+  console.log('Content hash', contentHash);
+})();
+
 ```
+
+### Installation
+
+If you are interesting in developing WhoisENS API or deploy you own copy, please see `INSTALL.md`.

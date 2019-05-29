@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import restify from 'restify';
 import errors from 'restify-errors';
+import corsMiddleware from 'restify-cors-middleware';
 import ENS from 'whoisens-lib';
 
 const server = restify.createServer({});
@@ -10,6 +11,13 @@ global.fetch = fetch;
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+
+const cors = corsMiddleware({
+  origins: ['*']
+});
+
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 const networkName = 'mainnet';
 const networkURL = 'https://eth.gateway.whoisens.org';

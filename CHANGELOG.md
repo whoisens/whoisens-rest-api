@@ -1,3 +1,12 @@
+## [0.0.6] - 2019-05-29
+
+### Changed
+- Added CORS #8
+
+### Added
+- tests for third-party libraries #10
+
+
 ## [0.0.5] - 2019-05-23
 
 ### Changed
@@ -21,7 +30,7 @@
 ### Changed
 - updated code as per whoisens-lib v1.0.0-beta.3
 - updated API documentation
-- added tests
+- added tests #1
 
 
 ## [0.0.1] - 2019-05-15
