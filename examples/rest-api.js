@@ -13,4 +13,3 @@ const name = 'whoisens.eth';
   const contentHash = (await (await fetch(`${networkURL}/resolve/contenthash/${name}`)).json()).result;
   console.log('Content hash', contentHash);
 })();
-

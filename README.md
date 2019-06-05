@@ -1,28 +1,27 @@
 # WhoisENS REST API
 
 <p>
-  <a href="https://travis-ci.org/whoisens/whoisens-api">
-    <img src="https://api.travis-ci.org/whoisens/whoisens-api.svg?branch=master" alt="Build status">
+  <a href="https://travis-ci.org/whoisens/whoisens-rest-api">
+    <img src="https://api.travis-ci.org/whoisens/whoisens-rest-api.svg?branch=master" alt="Build status">
   </a>
 
-  <a href="https://github.com/whoisens/whoisens-api/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/whoisens/whoisens-api.svg" alt="license">
+  <a href="https://github.com/whoisens/whoisens-rest-api/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/whoisens/whoisens-rest-api.svg" alt="license">
   </a>
 </p>
 
 
-WhoisENS REST API allows you to get owner/controller info, date expiration, resolve name/addresses using ENS.
+WhoisENS REST API utilize [whoisens-lib](https://github.com/whoisens/whoisens-lib) allows you to get owner/controller info, date expiration, resolve name/addresses using ENS via HTTP REST API.
 
-For REST API refer to https://whoisens.org/api
 
-> REST API Endpoint: https://api.whoisens.org
+> REST API Documentation: [https://whoisens.org/api](https://whoisens.org/api)
+
+> REST API Endpoint: [https://api.whoisens.org](https://api.whoisens.org)
 
 
 ### How to use
 
 You can use REST API from Node.js or directly from browser. CORS is enabled for all by default.
-
-#### REST API
 
 ```javascript
 const networkURL = 'https://api.whoisens.org';
@@ -40,28 +39,6 @@ const name = 'whoisens.eth';
 })();
 ```
 
-#### Directly connect to Node
-
-You can use WhoisENS Ethereum Node directly with  third-party libraries, like Web3.js.
-
-```javascript
-import Web3 from 'web3';
-
-const networkURL = 'https://eth.gateway.whoisens.org';
-const name = 'whoisens.eth';
-
-(async () => {
-  const web3 = new Web3(Web3.givenProvider || networkURL);
-
-  const forwardResolve = await web3.eth.ens.getAddress(name);
-  console.log('Forward Resolve', forwardResolve);
-
-  const contentHash = await web3.eth.ens.getContenthash(name);
-  console.log('Content hash', contentHash);
-})();
-
-```
-
 ### Installation
 
-If you are interesting in developing WhoisENS API or deploy you own copy, please see `INSTALL.md`.
+If you are interesting in developing WhoisENS API or deploy you own copy, please see [Installation](./INSTALL.md)
